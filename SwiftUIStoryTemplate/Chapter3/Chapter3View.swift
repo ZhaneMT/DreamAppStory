@@ -78,7 +78,7 @@ struct Chapter3View: View {
                             Text("\(mainCharacter), gathered all of her courage to sign up for the peer group. She signed up for the meeting for next week! ")
                             //wait a minute bro....
                             Text("\(mainCharacter), stared at the poster but it sent her into spirals. Even if \(villianCharacter) took her money, how would \(supportCharacter) help?")
-                            Image("Stress")
+                            Image("stressed")
                                 .resizable()
                                 .scaledToFit()
                             Text ("She didn't tell \(villianCharacter), but she could not contain her anticipation! The idea of \(supportCharacter)'s peer group potentially changing her circumstance did intrigue her. Maybe seeing that poster in the coffee shop was a sign that she should've took")
@@ -151,4 +151,7 @@ struct Chapter3View: View {
     #Preview {
         Chapter3View()
     }
+    
+
+
     
