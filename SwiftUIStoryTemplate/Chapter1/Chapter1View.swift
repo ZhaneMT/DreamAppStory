@@ -32,71 +32,91 @@ struct Chapter1View: View {
     }
     
     var body: some View {
-                VStack {
-                    HStack {
-                        Button(action: { showingChapters = true }) {
-                            Image(systemName: "book.fill")
-                                .font(.largeTitle)
-                        }
-                        .padding(.horizontal, 100)
-                        .sheet(isPresented: $showingChapters) {
-                            ChaptersView()
-                        }
-                        Image(systemName: "door.right.hand.open")
+        NavigationView {
+            VStack {
+                HStack {
+                    Button(action: { showingChapters = true }) {
+                        Image(systemName: "book.fill")
                             .font(.largeTitle)
-                            .frame(width: 260 , height:0)
                     }
-                    .padding(.bottom, -58)
-
-            Text("Chapter 1: Title")
-                .font(.largeTitle)
-                .bold()
-                .underline()
-                .multilineTextAlignment(.leading)
-                .frame(minWidth: 0, maxWidth: .infinity, minHeight: 100)
-                .padding(.top, 15)
-            Divider()
-            ScrollView{
-                
-                if showIntro {
-                    Text("Insert 1 random text that foes into here. The best part about food is that it is delicious.")
-                        .padding()
-                }
-
-                Button(showIntro ? "Close the backstory" : "Click here to read the backstory") {
-                    showIntro.toggle()
-                }
-                
-                Text("Insert 1 random text that foes into here. The best part about food is that it is delicious.")
-                    .padding()
-                Text("Insert random text that foes into here. The best part about food is that it is delicious.")
-                    .padding()
-                Image("lol")
-                    .padding(.bottom, 20)
-                
-                
-                if showVeganFoods {
-                    
-                    displayText
-                        .padding()
-                    
-                    Picker("Choose your food", selection: $selectedFood) {
-                        Text("Raw Fruits").tag(Vegan.rawFruits)
-                        Text("Raw Veggies").tag(Vegan.rawVeggies)
-                        Text("Meat Substitutes").tag(Vegan.meatSubstitutes)
+                    .padding(.horizontal, 100)
+                    .sheet(isPresented: $showingChapters) {
+                        ChaptersView()
                     }
-                    .pickerStyle(SegmentedPickerStyle())
-                    .onChange(of: selectedFood) { newValue in
-                        veganFoodText()
-                    }
+                    Image(systemName: "door.right.hand.open")
+                        .font(.largeTitle)
+                        .frame(width: 260 , height:0)
                 }
+                .padding(.bottom, -58)
                 
-                Button(showVeganFoods ? "Close" : "Click here to choose if she should eat rawVeggies, rawFruits or meatSubsitutes?") {
-                    showVeganFoods.toggle()
-                }
+                Text("Chapter 1: Vegan Tech")
+                    .font(.largeTitle)
+                    .bold()
+                    .underline()
+                    .multilineTextAlignment(.leading)
+                    .frame(minWidth: 0, maxWidth: .infinity, minHeight: 100)
+                    .padding(.top, 15)
+                
                 Divider()
+                
+                ScrollView{
+                    
+                    if showIntro {
+                        Text("Sometimes in life we make choices. A lot of choices are predetermined, while others are decided over time. \(mainCharacter)'s story is one like many , where she made bad decisions an decided to ultimately do whatever she wanted.")
+                            .padding()
+                    }
+                    
+                    Button(showIntro ? "Close the backstory" : "Click here to read the backstory") {
+                        showIntro.toggle()
+                    }
+                    
+                    Text("As a vegan, \(mainCharacter) could never truly find compatible vegan otpions within community events that were truly part of the vegan movement.")
+                        .padding()
+                    
+                    Image("vegan")
+                        .resizable()
+                        .frame(width: 300, height: 200)
+                        .padding(.bottom, 20)
+                    
+                    
+                    if showVeganFoods {
+                        
+                        displayText
+                            .padding()
+                        
+                        Picker("Choose your food", selection: $selectedFood) {
+                            Text("Raw Fruits").tag(Vegan.rawFruits)
+                            Text("Raw Veggies").tag(Vegan.rawVeggies)
+                            Text("Meat Substitutes").tag(Vegan.meatSubstitutes)
+                        }
+                        .pickerStyle(SegmentedPickerStyle())
+                        .onChange(of: selectedFood) { newValue in
+                            veganFoodText()
+                        }
+                    }
+                    
+                    Button(showVeganFoods ? "Close" : "Click here to choose if she should eat rawVeggies, rawFruits or meatSubsitutes?") {
+                        showVeganFoods.toggle()
+                    }
+                    Divider()
+                    HStack{
+                        NavigationLink(destination: CoverView()) {
+                            Label("", systemImage:"arrowshape.left.circle.fill")
+                        }
+                        .font(.largeTitle)
+                        .foregroundColor(.black)
+                        Text("Oh Okay...")
+                            .foregroundColor(.white)
+                        
+                        NavigationLink(destination: Chapter2View()) {
+                            Label ("", systemImage: "arrowshape.right.circle.fill" )
+                        }
+                        .font(.largeTitle)
+                        .foregroundColor(.black)
+                    }
+                }
+                .padding()
             }
-            .padding()
         }
     }
 }
@@ -121,5 +141,6 @@ struct Chapter1View_Previews: PreviewProvider {
         Chapter1View()
     }
 }
+
 
 
